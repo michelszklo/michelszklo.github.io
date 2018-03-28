@@ -8,7 +8,7 @@ nav ul, footer ul {
     padding: 0px;
     list-style: none;
     font-weight: bold;
-    color: #d3eff2
+    color: #fbfcff
 }
 nav ul li, footer ul li {
     display: inline;
@@ -16,7 +16,7 @@ nav ul li, footer ul li {
 }
 a {
     text-decoration: none;
-    color: #fbfcff;
+    color: #d3eff2;
 }
 a:hover {
     text-decoration: underline;
@@ -24,13 +24,13 @@ a:hover {
 h1 {
     font-size: 3em;
     font-family: 'Montserrat', 'Sans-Serif';
-    color: #d3eff2
+    color: #fbfcff
 }
 p {
     font-size: 1em;
     font-family: 'Montserrat', 'Sans-Serif';
     line-height: 1.2em;
-    color: #d3eff2;
+    color: #fbfcff;
 }
 footer {
     border-top: 1px solid #fbfcff;
