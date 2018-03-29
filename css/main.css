@@ -14,6 +14,12 @@ nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
 }
+ul li{
+    font-size: 1em;
+    font-family: 'Montserrat', 'Sans-Serif';
+    line-height: 1.3em;
+    color: #fbfcff;
+}
 a {
     text-decoration: none;
     color: #d3eff2;
