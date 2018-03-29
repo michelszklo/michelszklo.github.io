@@ -14,17 +14,6 @@ nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
 }
-ul {
-    list-style-type: circle;
-    font-size: 1.5em;
-    font-family: 'Montserrat', 'Sans-Serif';
-    line-height: 1.3em;
-    color: #fbfcff;
-}
-
-li {
-    float: left;
-}
 a {
     text-decoration: none;
     color: #d3eff2;
