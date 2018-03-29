@@ -14,11 +14,17 @@ nav ul li, footer ul li {
     display: inline;
     margin-right: 20px;
 }
-ul li{
+ul {
+    list-style-type: circle;
+    padding-left: 5px;
     font-size: 1em;
     font-family: 'Montserrat', 'Sans-Serif';
     line-height: 1.3em;
     color: #fbfcff;
+}
+
+li {
+    float: left;
 }
 a {
     text-decoration: none;
