@@ -55,3 +55,40 @@ ul.posts {
 ul.posts li {
     list-style: none;
 }
+
+.dropbtn {
+    background-color: #54b2c1;
+    color: #d3eff2;
+    padding: 0px;
+    font-family: 'Montserrat', 'Sans-Serif';
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content a {
+    font-family: 'Montserrat', 'Sans-Serif';
+    color:  #d3eff2;
+    padding: 12px 0px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #54b2c1;
+    text-decoration: underline;
+}
+
+.dropdown:hover .dropdown-content {
+    background-color: #54b2c1;
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #54b2c1;
+}
+
