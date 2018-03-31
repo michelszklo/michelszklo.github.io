@@ -1,6 +1,7 @@
+html{background-color: #f3f3f3}
 body {
     margin: 55px auto;
-    width: 49%;
+    width: 90%;
     background-color: #54b2c1;
 }
 nav ul, footer ul {
@@ -97,7 +98,7 @@ footer {
     position: absolute;
     font-size: 15px;
     background-color: #54b2c1;
-    min-width: 100px;
+    min-width: 106.5px;
     z-index: 1;
 }
 
@@ -116,18 +117,17 @@ footer {
 
 /* action hover top nav*/
 .topnav a:hover, .dropdown:hover .dropbtn {
-  font-size: 16px;
-  background-color: inherit;
-  color: #d3eff2;  
+  font-size: 15px;
+  background-color: #d3eff2;
+  color: #54b2c1;  
 }
 
 .dropdown-content a:hover {
-    background-color: inherit;
-    font-size: 14px;
-    color: #d3eff2;
+    background-color: #d3eff2;
+    font-size: 13px;
+    color: #54b2c1;
  }
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
