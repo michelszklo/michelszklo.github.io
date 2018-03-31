@@ -4,7 +4,7 @@ body {
     background-color: #54b2c1;
 }
 nav ul, footer ul {
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -23,22 +23,22 @@ a:hover {
 }
 h1 {
     font-size: 2.5em;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: #fbfcff
 }
 h2 {
     font-size: 2em;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: #d3eff2
 }
 h3 {
     font-size: 1em;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     color: #d3eff2
 }
 p {
     font-size: .9em;
-    font-family: 'Raleway', sans-serif;
+    font-family: 'Ubuntu', sans-serif;
     line-height: 1.2em;
     color: #fbfcff;
 }
@@ -58,7 +58,7 @@ footer {
   float: left;
   display: block;
   color: #d3eff2;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   text-align: center;
   padding: 14px 10px;
   text-decoration: none;
@@ -83,7 +83,7 @@ footer {
 /*dropdown button in the top nav*/
 .dropdown .dropbtn {
     font-size: 15px;
-    font-family: 'Montserrat', 'Sans-Serif';
+    font-family: 'Ubuntu', sans-serif;
     border: none;
     outline: none;
     color: #d3eff2;
