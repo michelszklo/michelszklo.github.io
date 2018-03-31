@@ -107,6 +107,8 @@ footer {
     font-size: 13px;
     color: #d3eff2;
     padding: 12px 16px;
+    line-height: 1px;
+    height: 1px;       
     text-decoration: none;
     display: block;
     text-align: left;
