@@ -4,7 +4,7 @@ body {
     background-color: #54b2c1;
 }
 nav ul, footer ul {
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     padding: 0px;
     list-style: none;
     font-weight: bold;
@@ -23,27 +23,27 @@ a:hover {
 }
 h1 {
     font-size: 2.5em;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #fbfcff
 }
 h2 {
     font-size: 2em;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #d3eff2
 }
 h3 {
     font-size: 1em;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: #d3eff2
 }
 p {
     font-size: .9em;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     line-height: 1.2em;
     color: #fbfcff;
 }
 footer {
-    border-top: 1px solid #fbfcff;
+    border-top: 1px solid #d3eff2;
     font-size: .8em;
 }
 
@@ -58,7 +58,7 @@ footer {
   float: left;
   display: block;
   color: #d3eff2;
-  font-family: 'Montserrat Alternates', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   text-align: center;
   padding: 14px 10px;
   text-decoration: none;
@@ -83,7 +83,7 @@ footer {
 /*dropdown button in the top nav*/
 .dropdown .dropbtn {
     font-size: 15px;
-    font-family: 'Montserrat Alternates', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     border: none;
     outline: none;
     color: #d3eff2;
