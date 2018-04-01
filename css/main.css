@@ -27,19 +27,19 @@ h1 {
     font-size: 2.5em;
     font-family: 'Montserrat', sans-serif;
     color: #fbfcff;
-    padding: 17px 0px 0px 25px;
+    padding: 17px 0px 0px 0px;
 }
 h2 {
     font-size: 2em;
     font-family: 'Montserrat', sans-serif;
     color: #d3eff2;
-    padding: 17px 0px 0px 30px
+    padding: 17px 0px 0px 0px
 }
 h3 {
     font-size: 1em;
     font-family: 'Montserrat', sans-serif;
     color: #d3eff2;
-    padding: 17px 0px 0px 35px
+    padding: 17px 0px 0px 0px
 }
 p {
     font-size: .9em;
