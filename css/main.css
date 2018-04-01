@@ -1,6 +1,7 @@
 body {
     width: 755px;
     background-color: #54b2c1;
+    position: relative;
 }
 nav ul, footer ul {
     font-family: 'Montserrat', sans-serif;
