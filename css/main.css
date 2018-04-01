@@ -1,14 +1,14 @@
 body {
-    margin: 55px auto;
-    width: 49%;
+    width: 755px;
     background-color: #54b2c1;
 }
 nav ul, footer ul {
     font-family: 'Montserrat', sans-serif;
-    padding: 0px;
+    padding-right: 100px;
     list-style: none;
     font-weight: bold;
-    color: #fbfcff
+    color: #fbfcff;
+    
 }
 nav ul li, footer ul li {
     display: inline;
@@ -24,23 +24,27 @@ a:hover {
 h1 {
     font-size: 2.5em;
     font-family: 'Montserrat', sans-serif;
-    color: #fbfcff
+    color: #fbfcff;
+    padding: 17px 0px 0px 25px;
 }
 h2 {
     font-size: 2em;
     font-family: 'Montserrat', sans-serif;
-    color: #d3eff2
+    color: #d3eff2;
+    padding: 17px 0px 0px 30px
 }
 h3 {
     font-size: 1em;
     font-family: 'Montserrat', sans-serif;
-    color: #d3eff2
+    color: #d3eff2;
+    padding: 17px 0px 0px 35px
 }
 p {
     font-size: .9em;
     font-family: 'Montserrat', sans-serif;
     line-height: 1.2em;
     color: #fbfcff;
+    padding: 0px 40px 0px 40px;
 }
 footer {
     border-top: 1px solid #d3eff2;
@@ -51,6 +55,7 @@ footer {
 .topnav {
   overflow: hidden;
   background-color: #54b2c1;
+  padding: 0px 0px 0px 0px
 }
 
 /* top navigation besides dropdown*/
@@ -97,7 +102,7 @@ footer {
     position: absolute;
     font-size: 15px;
     background-color: #54b2c1;
-    min-width: 106.5px;
+    width: 108px;
     z-index: 1;
 }
 
