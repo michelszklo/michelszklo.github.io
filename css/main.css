@@ -57,7 +57,8 @@ footer {
 .topnav {
   overflow: hidden;
   background-color: #54b2c1;
-  padding: 0px 0px 0px 0px
+  padding: 0px 0px 0px 0px;
+  width: 99px;
 }
 
 /* top navigation besides dropdown*/
@@ -85,6 +86,7 @@ footer {
 .dropdown {
     float: left;
     overflow: hidden;
+    width: 99px;
 }
 
 /*dropdown button in the top nav*/
@@ -104,7 +106,7 @@ footer {
     position: absolute;
     font-size: 15px;
     background-color: #54b2c1;
-    width: 98.5px;
+    width: 99px;
     z-index: 1;
 }
 
