@@ -5,7 +5,7 @@ body {
     margin: auto;
 }
 nav ul, footer ul {
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     padding-right: 100px;
     list-style: none;
     font-weight: bold;
@@ -25,25 +25,25 @@ a:hover {
 }
 h1 {
     font-size: 2.5em;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     color: #fbfcff;
     padding: 17px 0px 0px 0px;
 }
 h2 {
     font-size: 2em;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     color: #d3eff2;
     padding: 17px 0px 0px 0px
 }
 h3 {
     font-size: 1em;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     color: #d3eff2;
     padding: 17px 0px 0px 0px
 }
 p {
     font-size: .9em;
-    font-family: 'Oxygen', sans-serif;
+    font-family: 'Raleway', sans-serif;
     line-height: 1.2em;
     color: #fbfcff;
     padding: 0px 40px 0px 40px;
@@ -65,7 +65,7 @@ footer {
   float: left;
   display: block;
   color: #d3eff2;
-  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Oxygen', sans-serif;
   text-align: center;
   padding: 14px 10px;
   text-decoration: none;
@@ -90,7 +90,7 @@ footer {
 /*dropdown button in the top nav*/
 .dropdown .dropbtn {
     font-size: 15px;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Oxygen', sans-serif;
     border: none;
     outline: none;
     color: #d3eff2;
