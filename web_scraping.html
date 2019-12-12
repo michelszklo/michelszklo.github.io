@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Oficina de Web Scraping (PT)</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code > span.dt { color: #204a87; } /* DataType */
+code > span.dv { color: #0000cf; } /* DecVal */
+code > span.bn { color: #0000cf; } /* BaseN */
+code > span.fl { color: #0000cf; } /* Float */
+code > span.ch { color: #4e9a06; } /* Char */
+code > span.st { color: #4e9a06; } /* String */
+code > span.co { color: #8f5902; font-style: italic; } /* Comment */
+code > span.ot { color: #8f5902; } /* Other */
+code > span.al { color: #ef2929; } /* Alert */
+code > span.fu { color: #000000; } /* Function */
+code > span.er { color: #a40000; font-weight: bold; } /* Error */
+code > span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #000000; } /* Constant */
+code > span.sc { color: #000000; } /* SpecialChar */
+code > span.vs { color: #4e9a06; } /* VerbatimString */
+code > span.ss { color: #4e9a06; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #000000; } /* Variable */
+code > span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code > span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code > span.ex { } /* Extension */
+code > span.at { color: #c4a000; } /* Attribute */
+code > span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code > span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Michel Szklo</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li>
+  <a href="research.html">
+    <span class="fa fa-search"></span>
+     
+    Research
+  </a>
+</li>
+<li>
+  <a href="lapp.html">
+    <span class="fa fa-seedling"></span>
+     
+    LAPP
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-code"></span>
+     
+    Coding
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="web_scraping.html">Web Scraping</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="cv.html">
+    <span class="fa fa-id-card"></span>
+     
+    CV
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Oficina de Web Scraping (PT)</h1>
+
+</div>
+
+
+<p>Este workshop tem como objetivo fazer uma introdução a métodos de <strong>web scraping</strong> no <strong>R</strong> e em <strong>Python</strong></p>
+<div id="o-que-é-web-scraping" class="section level1">
+<h1>O que é Web Scraping?</h1>
+<p><em>web scraping</em>, <em>web harvesting</em> etc são processos automatizados para extrair dados de websites, utilizando <em>bots</em> ou <em>web crawlers</em>. Na maior parte das vezes, programas de web scraping acessam a <em>World Wide Web</em> diretamente, utilizando Hypertext Transfer Protocol (HTTP)</p>
+<div id="http" class="section level2">
+<h2>HTTP</h2>
+<p>Base da web moderna, permite a comunicação entre uma variedade de <em>hosts</em> e <em>clients</em>. Essa comunicação ocorre por meio de um par <strong>request/response</strong>. O <em>client</em> inicia uma mensagem de request HTTP, que é atendida por uma mensagem de resposta HTTP. Os requests são geralmente enviados via <em>Uniform Resource Locators</em> (URLs)</p>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>O URL revela a identidade do Host que queremos nos comunicar, mas a ação que queremos executar neste host é especificada pelos verbos HTTP (aqui apenas listei os verbos relevantes para web scraping, existem diversos outros):</p>
+<div id="get" class="section level4">
+<h4>GET</h4>
+<p>busca por um recurso existente. O URL contém todas as informações necessárias para o servidor localizar e retornar ao recurso.</p>
+</div>
+<div id="post" class="section level4">
+<h4>POST</h4>
+<p>cria um novo recurso. Um POST request geralmente carrega informações que especificam dados para um novo recurso.</p>
+</div>
+</div>
+<div id="html" class="section level2">
+<h2>HTML</h2>
+<p>Hypertext Markup Language (HTML) é a linguagem de marcação de documentos feitos para serem visualizados num web browser. O HTML descreve a estrutura semântica de uma web page e, na maior parte dos sites, é combinado com tecnologias como CSS e linguagens como JavaScript, que formatam a visualização do site.</p>
+<p>Quando raspamos o conteúdo de um site, estamos raspando informações da estrutura semântica e, portanto, é importante entender algo de html. Para auxiliar nesse processo recomendo duas coisas:</p>
+<ul>
+<li><strong>inspecionar</strong> os sites que queremos respar no web browser (ctrl + shift i)</li>
+<li>instalar a extensão <a href="https://selectorgadget.com/"><strong>selector gadget</strong></a></li>
+</ul>
+</div>
+</div>
+<div id="web-scraping-com-r" class="section level1">
+<h1>Web scraping com R</h1>
+<p>Para raspar dados da web, dois pacotes são essenciais:</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/httr/index.html"><strong><code>httr</code></strong></a>: permite trabalhar com HTTP requests e está organizado pelos verbos</li>
+<li><a href="https://cran.r-project.org/web/packages/rvest/index.html"><strong><code>rvest</code></strong></a>: pacote auxiliar ao <strong>httr</strong> que facilita o download e a manipulação de HTML</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages(&quot;httr&quot;)</span>
+<span class="co">#install.packages(&quot;rvest&quot;)</span>
+<span class="kw">library</span>(httr)
+<span class="kw">library</span>(rvest)</code></pre></div>
+<div id="httrget" class="section level2">
+<h2>httr::GET</h2>
+<p>Quando acessamos um URL estamos realizando um GET request. A função do pacote <strong>httr</strong> que realiza esse request é a função <strong>GET</strong>. Devemos utilizar essa função quando queremos raspar informações de um site como ele é. Por exemplo:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">site &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">GET</span>(<span class="st">&quot;https://ieps.org.br/pessoas/equipe-ieps/&quot;</span>)
+pessoas &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(site, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_nodes</span>(<span class="st">&quot;h3&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_text</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">trimws</span>()
+
+cargo &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(site, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_nodes</span>(<span class="st">&quot;h4&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_text</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">trimws</span>()
+
+cv &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(site, <span class="dt">encoding =</span> <span class="st">&quot;UTF-8&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_nodes</span>(<span class="st">&quot;p&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_text</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">trimws</span>()
+cv&lt;-cv[<span class="dv">2</span><span class="op">:</span><span class="dv">10</span>]
+pessoas &lt;-<span class="st"> </span>pessoas[<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cv)]
+cargo &lt;-<span class="st"> </span>cargo[<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(cv)]
+
+
+equipe_ieps &lt;-<span class="st"> </span><span class="kw">cbind.data.frame</span>(pessoas, cargo, cv)
+<span class="kw">kable</span>(equipe_ieps)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">pessoas</th>
+<th align="left">cargo</th>
+<th align="left">cv</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Miguel Lago</td>
+<td align="left">Diretor-Executivo</td>
+<td align="left">Cientista político formado em Sciences Po Paris, é mestre em administração pública pela mesma instituição. Fundou e presidiu a rede de mobilização Meu Rio e o Nossas, laboratório referência em civic-tech na América Latina. É professor visitante da School of International and Public Affairs da Universidade de Columbia em Nova York e da École d’Affaires Publiques de Sciences Po Paris.</td>
+</tr>
+<tr class="even">
+<td align="left">Rudi Rocha</td>
+<td align="left">Coordenador de Pesquisa</td>
+<td align="left">Possui graduação e mestrado em economia (UFRJ) e doutorado em economia (PUC-Rio). É professor associado da Escola de Administração de Empresas de São Paulo (FGV EAESP), bolsista de produtividade do CNPq, e vencedor de prêmios e grants internacionais, como o Newton Advanced Fellowship (Academia Britânica) e o Grand Challenges Explorations (Fundação Bill &amp; Melinda Gates). É professor adjunto licenciado do IE-UFRJ (2012/2017-), foi pesquisador associado ao ESRC Research Centre on Micro-Social Change (2015-2019), vice-presidente da Sociedade Brasileira de Econometria (2014-2015) e coordenador brasileiro da LACEA/IADB/World Bank/UNDP Research Network on Inequality and Poverty (2004-2008).</td>
+</tr>
+<tr class="odd">
+<td align="left">Rodrigo Fiães</td>
+<td align="left">Diretor Administrativo-Financeiro</td>
+<td align="left">Rodrigo Fiães é economista formado pela PUC-Rio, com mestrado pela London School of Economics and Political Science (LSE). Foi sócio da Gávea Investimentos (2004-15) e trabalhou em diversas instituições, privadas e públicas, nas áreas de finanças, pesquisas econômicas e políticas públicas. A partir de 2014, tem se dedicado ao 3º setor. Em particular, participou da concepção, montagem e início de operações de duas associações civis sem fins lucrativos (Instituto Serrapilheira, IEPS) e é vice-presidente do Conselho de Administração do Instituto Clima e Sociedade (iCS).</td>
+</tr>
+<tr class="even">
+<td align="left">Beatriz Rache</td>
+<td align="left">Pesquisadora Economia da Saúde</td>
+<td align="left">Beatriz Rache trabalhou com temas de pesquisa variados, de educação superior a pequenos negócios, sempre usando a análise de dados e econometria para auxílio à tomada de decisões. Um de seus principais interesses é estudar a desigualdade de oportunidades no Brasil do ponto de vista das políticas públicas, de forma a ajudar a amenizá-la. Foi Research Associate no JPMorgan Chase Institute, um think tank em Washington DC, Economista Júnior na Gávea Investimentos, no Rio de Janeiro, e Assistente de Pesquisa no Climate Policy Initiative e na PUC-Rio. É formada em Economia pela PUC-Rio, com mestrado em Economia pela Columbia University, em Nova York.</td>
+</tr>
+<tr class="odd">
+<td align="left">Letícia Nunes</td>
+<td align="left">Pesquisadora Economia da Saúde</td>
+<td align="left">Letícia Nunes possui mestrado e doutorado em Economia pela EPGE/FGV. Foi pesquisadora visitante da Universidade de Northwestern (Departamento de Economia) durante os anos de 2016 e 2017. Sua pesquisa concentra-se nas interseções de Economia da Saúde, Desenvolvimento Econômico e Organização Industrial.</td>
+</tr>
+<tr class="even">
+<td align="left">Helena Ciorra</td>
+<td align="left">Assistente Administrativo</td>
+<td align="left">Formada em Letras pela Universidade de São Paulo, com ênfase em línguas orientais. Premiada duas vezes no Concurso de Ensaios de Literatura Coreana do Literature Translation Institute (LTI-Korea). Trabalha há mais de 10 anos com revisão e tradução de textos, e desde 2016 atua como assistente na área de pesquisas acadêmicas.</td>
+</tr>
+<tr class="odd">
+<td align="left">Arthur Aguillar</td>
+<td align="left">Pesquisador Políticas Públicas</td>
+<td align="left">Economista formado pela PUC-Rio, e mestre em desenvolvimento internacional pela Harvard University, Arthur Aguillar dedica-se a fronteira entre a gestão pública e a pesquisa aplicada. Coordenou projetos de pesquisa e avaliações de impacto em saúde e educação no Brasil, Índia e Moçambique, colaborando com o JPAL, a London School of Economics e o ASER/Pratham. Foi coordenador de Projetos e Avaliação da Escola de Inovação e Políticas Públicas do Ministério da Educação, onde foi responsável por apoiar o Plano Regional de Desenvolvimento do Nordeste, e desenvolver programas de capacitação voltados para os governos municipais e estaduais da região.</td>
+</tr>
+<tr class="even">
+<td align="left">Helyn Thami</td>
+<td align="left">Pesquisadora Políticas Públicas</td>
+<td align="left">Graduada em Odontologia pela UFRJ / Queen Mary University of London, com Residência em Saúde da Família pela Escola Nacional de Saúde Pública (ENSP-Fiocruz), e Mestrado em Gestão e Políticas Públicas em Saúde pela University of Birmingham, Inglaterra (bolsista do Programa Chevening, do governo Britânico). Tem experiência internacional em análise de implementação de políticas públicas em saúde e desenvolvimento organizacional em saúde nos casos Brasileiro, Britânico e Uruguaio. Fez aperfeiçoamento em Análise de Políticas Públicas pela University of California, Berkeley, Estados Unidos. Obteve o 2º lugar no Prêmio SwB Ambassador, oferecido pelo British Council e Embaixada Britânica no Brasil, em reconhecimento ao impacto resultante da experiência de intercâmbio no biênio 2012/2013 (prêmio recebido em 2016).</td>
+</tr>
+<tr class="odd">
+<td align="left">Thaisa Marques</td>
+<td align="left">Analista Administrativo</td>
+<td align="left">Graduada em Ciências Contábeis, atua desde 2015 no campo das organizações sem fins lucrativos (até recentemente no Instituto Brasileiro de Análises Sociais e Econômicas – Ibase) nas áreas financeira, administrativa, trabalhista e contábil, com ênfase na Gestão de Projetos e Tesouraria.</td>
+</tr>
+</tbody>
+</table>
+<p>a função <code>httr::GET</code> realiza um GET request ao site do IEPS, que em seguida atribui ao objeto <code>site</code> a HTTP response; <code>httr::content</code> define o <em>enconding</em> que será utilizado; <code>rvest::html_nodes</code> seleciona o nódulo html que se deseja raspar; <code>rvest::html_text</code> extrai o texto do nódulo selecionado; <code>trimws()</code> apenas remove espaços em branco desnecessários</p>
+<div id="qual-elemento-html-raspar" class="section level3">
+<h3>Qual elemento HTML raspar?</h3>
+<p>Descobrindo qual elemento html representa a informação quer queremos:</p>
+<div id="inspecionar" class="section level4">
+<h4>Inspecionar</h4>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="selector-gadget" class="section level4">
+<h4>Selector Gadget</h4>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="httrpost" class="section level2">
+<h2>httr::POST</h2>
+<p>Quando necessitamos enviar algum dado ao servidor para que este retorne e informação que desejamos, estamos executando um POST request. A função <code>POST</code> do pacote <strong>httr</strong> realiza este request. Este tipo de request é usual em sites como TABNET Datasus, no qual escolhemos os parâmetros e em seguida o site retorna uma outra página com a informação que desejamos. Como exemplo, utilizaremos o <a href="http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10br.def">TABNET SIM</a>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ano &lt;-<span class="st"> &quot;obtbr17&quot;</span>
+form_data &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Linha=Munic%EDpio&amp;</span>
+<span class="st">                    Coluna=Faixa_Et%E1ria&amp;</span>
+<span class="st">                    Incremento=%D3bitos_p%2FOcorr%EAnc&amp;</span>
+<span class="st">                    Arquivos=&quot;</span>,ano,<span class="st">&quot;.dbf&amp;</span>
+<span class="st">                    pesqmes1=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SMunic%EDpio=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes2=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SCapital=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes3=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SRegi%E3o_de_Sa%FAde_%28CIR%29=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes4=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SMacrorregi%E3o_de_Sa%FAde=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes5=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SMicrorregi%E3o_IBGE=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes6=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SRegi%E3o_Metropolitana_-_RIDE=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes7=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    STerrit%F3rio_da_Cidadania=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes8=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SMesorregi%E3o_PNDR=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SAmaz%F4nia_Legal=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SSemi%E1rido=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SFaixa_de_Fronteira=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SZona_de_Fronteira=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SMunic%EDpio_de_extrema_pobreza=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes14=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SCap%EDtulo_CID-10=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes15=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SGrupo_CID-10=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes16=Digite+o+texto+e+ache+f%E1cil&amp;SCategoria_CID-10=1850&amp;</span>
+<span class="st">                    SCategoria_CID-10=1851&amp;</span>
+<span class="st">                    SCategoria_CID-10=1852&amp;</span>
+<span class="st">                    SCategoria_CID-10=1853&amp;</span>
+<span class="st">                    SCategoria_CID-10=1854&amp;</span>
+<span class="st">                    SCategoria_CID-10=1855&amp;</span>
+<span class="st">                    SCategoria_CID-10=1856&amp;</span>
+<span class="st">                    SCategoria_CID-10=1857&amp;</span>
+<span class="st">                    SCategoria_CID-10=1858&amp;</span>
+<span class="st">                    SCategoria_CID-10=1859&amp;</span>
+<span class="st">                    SCategoria_CID-10=1860&amp;</span>
+<span class="st">                    SCategoria_CID-10=1861&amp;</span>
+<span class="st">                    SCategoria_CID-10=1862&amp;</span>
+<span class="st">                    SCategoria_CID-10=1863&amp;</span>
+<span class="st">                    SCategoria_CID-10=1864&amp;</span>
+<span class="st">                    SCategoria_CID-10=1865&amp;</span>
+<span class="st">                    SCategoria_CID-10=1866&amp;</span>
+<span class="st">                    SCategoria_CID-10=1867&amp;</span>
+<span class="st">                    SCategoria_CID-10=1868&amp;</span>
+<span class="st">                    SCategoria_CID-10=1869&amp;</span>
+<span class="st">                    SCategoria_CID-10=1870&amp;</span>
+<span class="st">                    SCategoria_CID-10=1871&amp;</span>
+<span class="st">                    SCategoria_CID-10=1872&amp;</span>
+<span class="st">                    SCategoria_CID-10=1873&amp;</span>
+<span class="st">                    SCategoria_CID-10=1874&amp;</span>
+<span class="st">                    pesqmes17=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SCausa_-_CID-BR-10=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SCausa_mal_definidas=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes19=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SFaixa_Et%E1ria=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes20=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SFaixa_Et%E1ria_OPS=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes21=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SFaixa_Et%E1ria_det=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SFx.Et%E1ria_Menor_1A=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SSexo=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SCor%2Fra%E7a=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SEscolaridade=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SEstado_civil=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SLocal_ocorr%EAncia=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    formato=table&amp;</span>
+<span class="st">                    mostre=Mostra&quot;</span>)
+
+site &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">POST</span>(<span class="dt">url =</span> <span class="st">&quot;http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10br.def&quot;</span>,
+                     <span class="dt">body =</span> form_data, <span class="kw">timeout</span>(<span class="dv">20</span>))
+  
+tabdados &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(site, <span class="dt">encoding =</span> <span class="st">&quot;Latin1&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_nodes</span>(<span class="st">&quot;.tabdados tbody tr td&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_text</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">trimws</span>()
+  
+col_tabdados &lt;-<span class="st"> </span>httr<span class="op">::</span><span class="kw">content</span>(site, <span class="dt">encoding =</span> <span class="st">&quot;Latin1&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_nodes</span>(<span class="st">&quot;th&quot;</span>)<span class="op">%&gt;%</span>
+<span class="st">  </span>rvest<span class="op">::</span><span class="kw">html_text</span>() <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">trimws</span>()
+
+f1 &lt;-<span class="st"> </span><span class="cf">function</span>(x) x &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">.&quot;</span>, <span class="st">&quot;&quot;</span>, x)
+f2 &lt;-<span class="st"> </span><span class="cf">function</span>(x) x &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(x))
+  
+df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">matrix</span>(<span class="dt">data =</span> tabdados, <span class="dt">nrow =</span> <span class="kw">length</span>(tabdados)<span class="op">/</span><span class="kw">length</span>(col_tabdados), <span class="dt">ncol =</span> <span class="kw">length</span>(col_tabdados), <span class="dt">byrow =</span> <span class="ot">TRUE</span>))
+  
+<span class="kw">names</span>(df) &lt;-<span class="st"> </span>col_tabdados
+df[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">lapply</span>(df[<span class="op">-</span><span class="dv">1</span>], f1)
+df[<span class="op">-</span><span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">suppressWarnings</span>(<span class="kw">lapply</span>(df[<span class="op">-</span><span class="dv">1</span>], f2))
+
+df[<span class="kw">is.na</span>(df)] &lt;-<span class="st"> </span><span class="dv">0</span>
+
+df&lt;-<span class="st"> </span>df[<span class="dv">1</span><span class="op">:</span><span class="dv">20</span>,]
+<span class="kw">kable</span>(df)</code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Município</th>
+<th align="right">Menor 1 ano</th>
+<th align="right">1 a 4 anos</th>
+<th align="right">5 a 9 anos</th>
+<th align="right">10 a 14 anos</th>
+<th align="right">15 a 19 anos</th>
+<th align="right">20 a 29 anos</th>
+<th align="right">30 a 39 anos</th>
+<th align="right">40 a 49 anos</th>
+<th align="right">50 a 59 anos</th>
+<th align="right">60 a 69 anos</th>
+<th align="right">70 a 79 anos</th>
+<th align="right">80 anos e mais</th>
+<th align="right">Idade ignorada</th>
+<th align="right">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">TOTAL</td>
+<td align="right">99</td>
+<td align="right">103</td>
+<td align="right">93</td>
+<td align="right">638</td>
+<td align="right">10569</td>
+<td align="right">23742</td>
+<td align="right">14369</td>
+<td align="right">6989</td>
+<td align="right">3654</td>
+<td align="right">1601</td>
+<td align="right">684</td>
+<td align="right">241</td>
+<td align="right">966</td>
+<td align="right">63748</td>
+</tr>
+<tr class="even">
+<td align="left">110001 Alta Floresta D’Oeste</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">110040 Alto Paraíso</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">110002 Ariquemes</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">9</td>
+<td align="right">20</td>
+<td align="right">10</td>
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">51</td>
+</tr>
+<tr class="odd">
+<td align="left">110045 Buritis</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">19</td>
+</tr>
+<tr class="even">
+<td align="left">110003 Cabixi</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="left">110060 Cacaulândia</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">110004 Cacoal</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">7</td>
+<td align="right">8</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">23</td>
+</tr>
+<tr class="odd">
+<td align="left">110070 Campo Novo de Rondônia</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">110080 Candeias do Jamari</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">110090 Castanheiras</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">110005 Cerejeiras</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">110092 Chupinguaia</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">110006 Colorado do Oeste</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">110008 Costa Marques</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">110094 Cujubim</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">110009 Espigão D’Oeste</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">110100 Governador Jorge Teixeira</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">110010 Guajará-Mirim</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">110110 Itapuã do Oeste</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">4</td>
+</tr>
+</tbody>
+</table>
+<p>O objeto <code>form_data</code> contém os dados que enviamos ao servidor (POST). Abaixo veremos como saber qual informação enviar. A função <code>httr::POST</code> é muito semelhante à <code>httr::GET</code> que mostramos acima. Além do URL que queremos acessar, adicionamos as informações que queremos postar para o servidor <code>body =</code>. A função <code>timeout</code> apenas define o tempo de espera (em segundos) ao tentar acessar o site. Como o servidor do DATASUS é muitas vezes lento, é bom definir uma espera maior que a default.</p>
+<div id="qual-informação-enviar-ao-servidor" class="section level3">
+<h3>Qual informação enviar ao servidor?</h3>
+<ol style="list-style-type: decimal">
+<li>Devemos acessar o <a href="http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10br.def">site</a> e inspecionar, e acessar a aba <em>network</em> e apertar <code>Ctrl + R</code> para iniciar uma gravação da comunicação via HTTP.</li>
+</ol>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>uma vez que a comunicação HTTP está sendo gravada, devemos voltar a página do TABNET, escolher as opções desejadas e clicar no botão <strong>Mostra</strong> para acessar os dados.</p></li>
+<li><p>Em seguida, voltamos à aba <em>network</em>, clicamos no objeto que contém parte do URL que fizemos o request.</p></li>
+</ol>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li>O último ítem, <strong>Form Data</strong>, contém toda informação enviada pelo formulário que necessitamos para fazer um POST request pelo R</li>
+</ol>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="como-fazer-um-loop-quando-precisamos-realizar-vários-posts" class="section level3">
+<h3>Como fazer um loop quando precisamos realizar vários POSTs?</h3>
+<p>Podemos criar um loop que altera parâmetros do form data. Como saber quais parâmetros alterar? e pelo o que alterar? O ideal é inspecionar o parâmetro que desejamos <em>loopar</em> na página inicial verificar qual o nome dado na estrutura html</p>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ano_html &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;obtbr96&quot;</span>,<span class="st">&quot;obtbr97&quot;</span>,<span class="st">&quot;obtbr98&quot;</span>,<span class="st">&quot;obtbr99&quot;</span>,<span class="st">&quot;obtbr00&quot;</span>,<span class="st">&quot;obtbr01&quot;</span>,<span class="st">&quot;obtbr02&quot;</span>,<span class="st">&quot;obtbr03&quot;</span>,<span class="st">&quot;obtbr04&quot;</span>,<span class="st">&quot;obtbr05&quot;</span>,<span class="st">&quot;obtbr06&quot;</span>,<span class="st">&quot;obtbr07&quot;</span>,<span class="st">&quot;obtbr08&quot;</span>,<span class="st">&quot;obtbr09&quot;</span>,<span class="st">&quot;obtbr10&quot;</span>,<span class="st">&quot;obtbr11&quot;</span>,<span class="st">&quot;obtbr12&quot;</span>,<span class="st">&quot;obtbr13&quot;</span>,<span class="st">&quot;obtbr14&quot;</span>,<span class="st">&quot;obtbr15&quot;</span>,<span class="st">&quot;obtbr16&quot;</span>,<span class="st">&quot;obtbr17&quot;</span>)
+
+<span class="cf">for</span> (ano <span class="cf">in</span> ano_html){
+
+form_data &lt;-<span class="st"> </span><span class="kw">paste0</span>(<span class="st">&quot;Linha=Munic%EDpio&amp;</span>
+<span class="st">                    Coluna=Faixa_Et%E1ria&amp;</span>
+<span class="st">                    Incremento=%D3bitos_p%2FOcorr%EAnc&amp;</span>
+<span class="st">                    Arquivos=&quot;</span>,ano,<span class="st">&quot;.dbf&amp;</span>
+<span class="st">                    pesqmes1=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SMunic%EDpio=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes2=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SCapital=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes3=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SRegi%E3o_de_Sa%FAde_%28CIR%29=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes4=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SMacrorregi%E3o_de_Sa%FAde=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes5=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SMicrorregi%E3o_IBGE=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes6=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SRegi%E3o_Metropolitana_-_RIDE=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes7=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    STerrit%F3rio_da_Cidadania=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes8=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SMesorregi%E3o_PNDR=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SAmaz%F4nia_Legal=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SSemi%E1rido=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SFaixa_de_Fronteira=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SZona_de_Fronteira=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SMunic%EDpio_de_extrema_pobreza=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes14=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SCap%EDtulo_CID-10=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes15=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SGrupo_CID-10=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes16=Digite+o+texto+e+ache+f%E1cil&amp;SCategoria_CID-10=1850&amp;</span>
+<span class="st">                    SCategoria_CID-10=1851&amp;SCategoria_CID-10=1852&amp;</span>
+<span class="st">                    SCategoria_CID-10=1853&amp;SCategoria_CID-10=1854&amp;</span>
+<span class="st">                    SCategoria_CID-10=1855&amp;SCategoria_CID-10=1856&amp;</span>
+<span class="st">                    SCategoria_CID-10=1857&amp;SCategoria_CID-10=1858&amp;</span>
+<span class="st">                    SCategoria_CID-10=1859&amp;SCategoria_CID-10=1860&amp;</span>
+<span class="st">                    SCategoria_CID-10=1861&amp;SCategoria_CID-10=1862&amp;</span>
+<span class="st">                    SCategoria_CID-10=1863&amp;SCategoria_CID-10=1864&amp;</span>
+<span class="st">                    SCategoria_CID-10=1865&amp;SCategoria_CID-10=1866&amp;</span>
+<span class="st">                    SCategoria_CID-10=1867&amp;SCategoria_CID-10=1868&amp;</span>
+<span class="st">                    SCategoria_CID-10=1869&amp;SCategoria_CID-10=1870&amp;</span>
+<span class="st">                    SCategoria_CID-10=1871&amp;SCategoria_CID-10=1872&amp;</span>
+<span class="st">                    SCategoria_CID-10=1873&amp;SCategoria_CID-10=1874&amp;</span>
+<span class="st">                    pesqmes17=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SCausa_-_CID-BR-10=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SCausa_mal_definidas=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes19=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SFaixa_Et%E1ria=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes20=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SFaixa_Et%E1ria_OPS=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    pesqmes21=Digite+o+texto+e+ache+f%E1cil&amp;</span>
+<span class="st">                    SFaixa_Et%E1ria_det=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SFx.Et%E1ria_Menor_1A=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SSexo=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SCor%2Fra%E7a=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SEscolaridade=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SEstado_civil=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    SLocal_ocorr%EAncia=TODAS_AS_CATEGORIAS__&amp;</span>
+<span class="st">                    formato=table&amp;mostre=Mostra&quot;</span>)
+}</code></pre></div>
+</div>
+</div>
+</div>
+<div id="web-scraping-com-pythonselenium" class="section level1">
+<h1>Web scraping com Python/Selenium</h1>
+<p>Nem todos os sites são simples de raspar. Muitos são construidos de formas mais modernas e interativas e não basta realizar um POST Request para acessar os dados que desejamos. Nesses casos, o <strong>Selenium</strong> pode ser uma boa alternativa. Dentre as diversas funções, esse pacote permite automatizar um Web Browser.</p>
+<p>Para exemplificar sua funcionalidade, utilizarei o Selenium para raspar o mesmo <a href="http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10br.def">site</a> que raspamos com o R.</p>
+<p>Antes de utilizar o Selenium é importante fazer download de algum webdriver e salvá-lo no diretório de trabalho. Nesse exemplo utilizarei o webdriver do Chrome, <a href="https://sites.google.com/a/chromium.org/chromedriver/">Chromedriver</a></p>
+<p>Em seguida, programamos o Selenium para acessar o site do <a href="http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10br.def">TABNET SIM</a>, selecionar os campos do formulario que desejamos e enviar o formulário.</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python">
+<span class="im">import</span> selenium
+<span class="im">from</span> selenium <span class="im">import</span> webdriver
+<span class="im">from</span> selenium.webdriver.common.keys <span class="im">import</span> Keys
+<span class="im">from</span> selenium.webdriver.support.ui <span class="im">import</span> WebDriverWait
+<span class="im">from</span> selenium.webdriver.common.by <span class="im">import</span> By
+<span class="im">from</span> selenium.common.exceptions <span class="im">import</span> TimeoutException
+
+url <span class="op">=</span> <span class="st">&quot;http://tabnet.datasus.gov.br/cgi/tabcgi.exe?sim/cnv/obt10br.def&quot;</span>
+
+<span class="co"># download chromedriver from &quot;https://sites.google.com/a/chromium.org/chromedriver/&quot; into your working directory.</span>
+driver <span class="op">=</span> webdriver.Chrome(<span class="st">&quot;C:/Users/Michel/Google Drive/DOUTORADO FGV/IEPS/web_scraping_workshop/chromedriver&quot;</span>)
+
+<span class="co"># setting driver options</span>
+chrome_options <span class="op">=</span> webdriver.ChromeOptions()
+prefs <span class="op">=</span> {<span class="st">&#39;download.default_directory&#39;</span> : <span class="st">&#39;C:/Users/Michel/Google Drive/DOUTORADO FGV/IEPS/web_scraping_workshop&#39;</span>}
+chrome_options.add_experimental_option(<span class="st">&#39;prefs&#39;</span>, prefs)
+driver <span class="op">=</span> webdriver.Chrome(chrome_options<span class="op">=</span>chrome_options)
+driver.set_page_load_timeout(<span class="dv">10</span>)
+
+
+<span class="co"># GET request</span>
+driver.get(url)
+
+<span class="co"># Driver &quot;behavior&quot;</span>
+<span class="co"># ============================================================</span>
+
+<span class="co"># linha</span>
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;L&quot;]/option[1]&#39;</span>).click()
+<span class="co"># coluna</span>
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;C&quot;]/option[7]&#39;</span>).click()
+<span class="co"># Conteúdo</span>
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;I&quot;]/option[1]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;I&quot;]/option[2]&#39;</span>).click()
+<span class="co"># Periodo</span>
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;A&quot;]/option[1]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;A&quot;]/option[1]&#39;</span>).click()
+
+<span class="co"># CID-10</span>
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;fig16&quot;]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1851]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1852]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1853]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1854]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1855]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1856]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1857]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1858]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1859]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1860]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1861]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1862]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1863]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1864]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1865]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1866]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1867]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1868]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1869]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1870]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1871]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1872]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1873]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1874]&#39;</span>).click()
+driver.find_element_by_xpath(<span class="st">&#39;//*[@id=&quot;S16&quot;]/option[1875]&#39;</span>).click()
+
+<span class="co"># Mostra</span>
+driver.find_element_by_xpath(<span class="st">&#39;/html/body/div/div/center/div/form/div[4]/div[2]/div[2]/input[1]&#39;</span>).click()
+
+html <span class="op">=</span> driver.page_source
+
+driver.quit()</code></pre></div>
+<p>Para selecionar os campos, copiei os xpaths exatos dos campos e utilizei duas funções: <code>find_element_by_xpath('qualquer xpath')</code> para encontrar o xpath e <code>click()</code> para clicar no elemento encontrado. Esse <a href="https://selenium-python.readthedocs.io/index.html">site</a> descreve em detalhes como utilizar Selenium com Python e todas suas funcionalidades.</p>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="web_scraping_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<div id="beautiful-soup" class="section level2">
+<h2>Beautiful Soup</h2>
+<p>Semelhante ao pacote <strong>rvest</strong> no R, o <strong>Beautiful Soup</strong> facilita o download e manipulação de HTML.</p>
+<p>Ao fim do código anterior, atribuímos todo html da página final acessada pelo Selenium ao objeto <code>html</code>. Utilizaremos o <strong>Beautiful Soup</strong> para extrair apenas as partes de html que desejamos (os dados da tabela e títulos das colunas)</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup
+
+soup <span class="op">=</span> BeautifulSoup(html, <span class="st">&#39;html.parser&#39;</span>)
+
+tabdados <span class="op">=</span> soup.select(<span class="st">&quot;.tabdados tbody tr td&quot;</span>)
+tabdados <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> node: node.get_text().strip(), tabdados))
+
+col_tabdados <span class="op">=</span> soup.select(<span class="st">&quot;.tabdados th&quot;</span>)
+col_tabdados <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> node: node.get_text().strip(), col_tabdados))</code></pre></div>
+<p>A primeira etapa é atribuir ao objeto <code>soup</code> o objeto <code>html</code> computado pelo Beautiful Soup para que possamos utilizar as funções do pacote. A função <code>select</code> seleciona partes do html. Repare que nesse caso estamos utilizando o mesmo <em>css selector</em> que utilizamos na raspagem com o R.</p>
+<p>Em Python, utilizamos <code>lambda</code> para criar uma <em>in line function</em>. A função criada extrai o texto do nódulo html selecionado (<code>get_text</code>) e retira os espaços em branco (<code>strip</code>). A função <code>map</code> é utilizada para aplicar uma função a diversos elementos simultaneamente e retorna um <em>map object</em> e a função <code>list</code> para converter esse <em>map object</em> em um <em>list object</em>.</p>
+<p>Em seguida utilizamos funções básicas do pacote <strong>numpy</strong> para transformar os objetos de lista em um data frame:</p>
+<div class="sourceCode"><pre class="sourceCode python"><code class="sourceCode python"><span class="im">import</span> numpy
+
+len_tabdados <span class="op">=</span> <span class="bu">len</span>(tabdados)
+len_col_tabdados <span class="op">=</span> <span class="bu">len</span>(col_tabdados)
+
+nrow <span class="op">=</span> <span class="bu">int</span>(len_tabdados<span class="op">/</span>len_col_tabdados)
+ncol <span class="op">=</span> <span class="bu">int</span>(len_col_tabdados)
+
+df_names <span class="op">=</span> numpy.array(col_tabdados).reshape(<span class="dv">1</span>,ncol)
+df <span class="op">=</span> numpy.array(tabdados).reshape(nrow,ncol)
+
+df <span class="op">=</span> numpy.vstack([df_names, df])
+
+numpy.savetxt(<span class="st">&quot;C:/Users/Michel/Google Drive/DOUTORADO FGV/IEPS/web_scraping_workshop/selenium_sim.csv&quot;</span>, df, delimiter<span class="op">=</span><span class="st">&quot;,&quot;</span>, fmt<span class="op">=</span><span class="st">&#39;</span><span class="sc">%s</span><span class="st">&#39;</span>)</code></pre></div>
+</div>
+</div>
+<div id="outras-ferramentas-úteis-para-programação" class="section level1">
+<h1>Outras ferramentas úteis para programação</h1>
+<div id="editor-de-texto" class="section level2">
+<h2>Editor de texto</h2>
+<p>Pode facilitar muito o processo de programação, em especial quando programamos em algumas linguagens, trabalhar com um editor de texto único que suporta diversas linguagens. De forma geral, os editores possuem <em>synthax highlighting</em>, <em>code completion</em>, atalhos de teclado e são altamente customizáveis.</p>
+<p>Para quem trabalha com Stata, R, Python, minha sugestão é utilizar o <a href="https://code.visualstudio.com/">Visual Code Studio</a></p>
+<p>Algumas outras alternativas são: <a href="https://atom.io/">Atom</a>, <a href="https://www.sublimetext.com/">Sublime Text</a></p>
+</div>
+<div id="rmarkdown" class="section level2">
+<h2>Rmarkdown</h2>
+<p>O Rmarkdown permite escrever documentos completamente reproduzíveis e suporta diversos formatos de output, como HTML, PDF, MS Word, Beamer, HTML5 slides, etc. Essa oficina foi escrita em RMarkdown, acesse o código <a href="link">aqui</a>.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
