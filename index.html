@@ -13,8 +13,8 @@
 
 <title>Michel Szklo</title>
 
-<script src="site_libs/header-attrs-2.7.4/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -53,6 +53,7 @@
 
 
 
+
 <style type = "text/css">
 .main-container {
   max-width: 940px;
@@ -73,6 +74,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -298,7 +302,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -312,21 +316,21 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="index.html">
-    <span class="fas fa-home"></span>
+    <span class="fa fa-home"></span>
      
     Home
   </a>
 </li>
 <li>
   <a href="research.html">
-    <span class="fas fa-search"></span>
+    <span class="fa fa-search"></span>
      
     Research
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-code"></span>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-code"></span>
      
     Coding
      
@@ -339,8 +343,8 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-thermometer"></span>
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="fa fa-thermometer"></span>
      
     COVID 19
      
@@ -357,7 +361,7 @@ div.tocify {
 </li>
 <li>
   <a href="cvitae.html">
-    <span class="fas fa-id-card"></span>
+    <span class="fa fa-id-card"></span>
      
     CV
   </a>
@@ -377,11 +381,26 @@ div.tocify {
 
 
 <p><img src="index_files/figure-html/unnamed-chunk-1-1.png" width="230.4" /></p>
-<p>I’m a PhD in Public Administration and Government at <a href="https://eaesp.fgv.br/" target="_blank">Fundação Getulio Vargas (EAESP FGV)</a>, and founder at LAPP (Public Policy and Social Programs Lab), a platform that seeks to gather, organize and provide straightforward information (causal evidence) on the impacts of public policy and social programs that went under rigorous evaluation worldwide. I previously worked as graduate research assistant at <a href="https://ieps.org.br/" target="_blank">IEPS</a> and at <a href="http://www.cepesp.io/" target="_blank">CEPESP/FGV</a>, researcher at <a href="http://fgvclear.org/en/" target="_blank">FGV EESP CLEAR</a>, and short-term consultant at <a href="https://www.iadb.org/en/about-us/overview" target="_blank">IADB</a>. I also hold a bachelor’s degree from the <a href="https://eesp.fgv.br/en" target="_blank">São Paulo School of Economics (EESP/FGV)</a> and a master’s degree from <a href="https://www.tilburguniversity.edu/" target="_blank">Tilburg University</a>, all in economics. I truly believe that evidence-informed decision-making is the key to the development and strengthening of public policies and to positively impact the livelihoods of those who need the most.</p>
+<p>I’m a PhD in Public Administration and Government at
+<a href="https://eaesp.fgv.br/" target="_blank">Fundação Getulio Vargas
+(EAESP FGV)</a>, graduate research assistant at
+<a href="https://ieps.org.br/" target="_blank">IEPS-SP</a>, and founder
+at LAPP (Public Policy and Social Programs Lab), a platform that seeks
+to gather, organize and provide straightforward information (causal
+evidence) on the impacts of public policy and social programs that went
+under rigorous evaluation worldwide. I also hold a bachelor’s degree
+from the <a href="https://eesp.fgv.br/en" target="_blank">São Paulo
+School of Economics (EESP/FGV)</a> and a master’s degree from
+<a href="https://www.tilburguniversity.edu/" target="_blank">Tilburg
+University</a>, all in economics. I truly believe that evidence-informed
+decision-making is the key to the development and strengthening of
+public policies and to positively impact the livelihoods of those who
+need the most.</p>
 <p><br />
 </p>
-<p><strong>Research Interests</strong>: policy impact evaluation, health and demographic economics, public health</p>
-<p><strong>Email</strong>: <a href="mailto:mszklo@gmail.com" class="email">mszklo@gmail.com</a></p>
+<p><strong>Research Interests</strong>: policy impact evaluation, health
+and demographic economics, public health</p>
+<p><strong>Email</strong>: mszklo [at] gmail [dot] com</p>
 
 <script type="text/javascript">
   $(function() {
@@ -525,6 +544,9 @@ $(document).ready(function () {
 
 <script>
 $(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
 
     // move toc-ignore selectors from section div to header
     $('div.section.toc-ignore')
