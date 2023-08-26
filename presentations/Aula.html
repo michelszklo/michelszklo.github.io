@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Michel Szklo   FGV EAESP" />
+  <title>Microeconomia</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="Aula_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="Aula_files/reveal.js-3.3.0.1/css/theme/simple.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal .slide-menu-button {
+      left: 105px !important;
+    }
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="styles.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="Aula_files/header-attrs-2.14/header-attrs.js"></script>
+    <link href="Aula_files/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+    <link href="Aula_files/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">Microeconomia</h1>
+  <h1 class="subtitle">Conceitos Básicos de Teoria dos Jogos <br></h1>
+    <h2 class="author">Michel Szklo <br> FGV EAESP</h2>
+    <h3 class="date">26 de Agosto de 2023</h3>
+</section>
+
+<section class="slide level2">
+
+<style type="text/css">
+.reveal section p {
+  font-size: 0.6em;
+}
+</style>
+<p><br> <br></p>
+<ul>
+<li><a href="#/introdu&amp;ccedil&amp;atildeo">Introdução</a></li>
+<li><a href="#/o-jogo">O Jogo</a></li>
+<li><a href="#/principais-conceitos">Principais Conceitos</a></li>
+<li><a href="#/o-dilema-dos-prisioneiros">O Dilema dos
+Prisioneiros</a></li>
+<li><a href="#/jogos-repetidos">Jogos Repetidos</a></li>
+<li><a href="#/jogos-dinamicos">Jogos Dinâmicos</a></li>
+<li><a href="#/aplicações">Aplicações</a></li>
+</ul>
+</section>
+<section>
+<section id="introdução" class="title-slide slide level1">
+<h1>Introdução</h1>
+
+</section>
+<section id="o-que-é-a-teoria-dos-jogos" class="slide level2">
+<h2>O que é a Teoria dos Jogos?</h2>
+<ul>
+<li>A Teoria dos Jogos é um campo multidisciplinar que combina
+matemática e economia para analisar a tomada de decisões estratégicas
+entre indivíduos racionais.</li>
+<li>Ela revela a interação estratégica entre diferentes atores,
+oferecendo uma lente para decifrar cenários complexos envolvendo
+competição, cooperação e negociação.</li>
+<li>Seu surgimento está associado ao trabalho do matemático John Nash,
+do economista John von Neumann e do matemático Oskar Morgenstern.</li>
+</ul>
+</section></section>
+<section>
+<section id="o-jogo" class="title-slide slide level1">
+<h1>O Jogo</h1>
+
+</section>
+<section id="o-jogo-1" class="slide level2">
+<h2>O Jogo</h2>
+<ul>
+<li>Um jogo é qualquer situação na qual os jogadores (os participantes)
+tomam decisões estratégicas (decisões que levam em conta as atitudes dos
+outros).</li>
+<li>É uma forma simplificada de representar situações reais em atores
+interagem e tomam decisões.</li>
+</ul>
+</section>
+<section id="elementos" class="slide level2">
+<h2>Elementos</h2>
+<ul>
+<li><strong>Jogadores:</strong> Imagine-os como os participantes em um
+cenário, cada um tentando maximizar seus próprios resultados.</li>
+<li><strong>Estratégias:</strong> Elas representam o conjunto de
+escolhas à disposição dos jogadores. Estratégias moldam as interações e
+resultados do jogo.</li>
+<li><strong>Recompensas (payoff):</strong> incorporam as recompensas ou
+custos associados aos diferentes resultados do jogo.</li>
+</ul>
+</section>
+<section id="elementos-1" class="slide level2">
+<h2>Elementos</h2>
+<ul>
+<li><strong>Regras:</strong> Cada jogo tem um conjunto de regras que
+definem as escolhas disponíveis, interações e restrições.</li>
+<li><strong>Informação:</strong> Diz respeito ao que cada jogador sabe
+sobre as estratégias e preferências dos outros. Informação incompleta ou
+assimétrica pode impactar significativamente as decisões.</li>
+</ul>
+</section>
+<section id="tipos-de-jogos" class="slide level2">
+<h2>Tipos de Jogos</h2>
+<ol type="1">
+<li><strong>Jogos de Decisões Simultâneas</strong>
+<ul>
+<li>Esta categoria captura cenários em que os jogadores devem tomar suas
+decisões simultaneamente, sem conhecimento das escolhas de seus
+pares.</li>
+<li>Exemplo: O icônico Dilema do Prisioneiro, onde dois suspeitos
+decidem independentemente se cooperam ou traem.</li>
+</ul></li>
+<li><strong>Jogos de Decisões Sequenciais</strong>
+<ul>
+<li>Jogos sequenciais ocorrem ao longo de várias rodadas, com cada
+jogador respondendo a decisões anteriores.</li>
+<li>Considere o xadrez como um exemplo clássico. Os jogadores reagem a
+movimentos anteriores, criando camadas intricadas de estratégia e
+contraestratégia.</li>
+</ul></li>
+</ol>
+</section>
+<section id="tipos-de-jogos-1" class="slide level2">
+<h2>Tipos de Jogos</h2>
+<ol start="3" type="1">
+<li><strong>Jogos Estáticos</strong>
+<ul>
+<li>Em jogos estáticos, todos os jogadores fazem suas escolhas
+simultaneamente, como uma foto em um determinado momento.</li>
+<li>Pense nisso como capturar um único momento de tomada de decisão. O
+Dilema do Casal, onde um casal decide qual filme assistir, é uma
+ilustração relevante.</li>
+</ul></li>
+<li><strong>Jogos Dinâmicos</strong>
+<ul>
+<li>Jogos dinâmicos englobam cenários em que as decisões se desdobram ao
+longo do tempo, e escolhas anteriores impactam movimentos
+subsequentes.</li>
+<li>Uma ilustração é o Modelo de Duopólio de Cournot na economia, onde
+empresas ajustam suas quantidades de produção em várias rodadas,
+considerando as ações anteriores de seus rivais.</li>
+</ul></li>
+</ol>
+</section>
+<section id="a-matriz-de-payoffs" class="slide level2">
+<h2>A Matriz de Payoffs</h2>
+<p><img data-src="figures/ex_0.PNG" style="width:90.0%"
+alt="Matriz de Payoff" /></p>
+</section>
+<section id="a-matriz-de-payoffs-1" class="slide level2">
+<h2>A Matriz de Payoffs</h2>
+<p><img data-src="figures/ex_1.PNG" style="width:90.0%"
+alt="Matriz de Payoff" /></p>
+</section></section>
+<section>
+<section id="principais-conceitos" class="title-slide slide level1">
+<h1>Principais Conceitos</h1>
+
+</section>
+<section id="estratégia-dominante" class="slide level2">
+<h2>Estratégia Dominante</h2>
+<ul>
+<li>Estratégia ótima de um jogador que não se altera em função da
+estratégia adotada pelo seu oponente.</li>
+<li>Qual é a melhor ação de um jogador para cada ação possível de seu
+oponente?</li>
+<li>Se a melhor ação for sempre a mesma, independendo do que o outro
+faço, essa é uma <strong>estratégia dominante</strong>.</li>
+</ul>
+<p><img data-src="figures/ex_1.PNG" style="width:75.0%"
+alt="Matriz de Payoff" /></p>
+</section>
+<section id="equilíbrio-de-nash" class="slide level2">
+<h2>Equilíbrio de Nash</h2>
+<ul>
+<li>O Equilíbrio de Nash é uma situação em que nenhum jogador pode
+ganhar ao mudar unilateralmente sua estratégia, assumindo que as
+estratégias dos outros jogadores permaneçam inalteradas.</li>
+<li>Nesse equilíbrio, todos os jogadores escolhem a estratégia que lhes
+oferece o maior payoff em função daquilo que seus oponentes estão
+fazendo.</li>
+<li>O Equilíbrio de Nash nem sempre representa o equilíbrio ótimo
+(pareto).</li>
+</ul>
+<p><img data-src="figures/ex_1b.PNG" style="width:75.0%"
+alt="Matriz de Payoff" /></p>
+</section></section>
+<section>
+<section id="o-dilema-dos-prisioneiros"
+class="title-slide slide level1">
+<h1>O Dilema dos Prisioneiros</h1>
+
+</section>
+<section id="o-que-é-o-dilema-dos-prisioneiros" class="slide level2">
+<h2>O que é o Dilema dos Prisioneiros?</h2>
+<ul>
+<li>O Dilema do Prisioneiro pinta uma imagem do conflito entre a
+racionalidade individual e coletiva.</li>
+<li>O Dilema surge quando ambos os suspeitos de um crime, temendo o pior
+resultado possível, acabam escolhendo a estratégia subótima de
+confessar, levando a resultados subótimos para ambos.</li>
+<li>Se os dois pudessem simplesmente entrar em acordo para não
+confessar, cada um ficaria menos tempo na prisão.</li>
+</ul>
+</section>
+<section id="matriz-de-payoffs-do-dilema-dos-prisioneiros"
+class="slide level2">
+<h2>Matriz de Payoffs do Dilema dos Prisioneiros</h2>
+<p><img data-src="figures/ex_2.PNG" style="width:90.0%"
+alt="Matriz de Payoff" /></p>
+</section></section>
+<section>
+<section id="jogos-repetidos" class="title-slide slide level1">
+<h1>Jogos Repetidos</h1>
+
+</section>
+<section id="jogos-repetidos-1" class="slide level2">
+<h2>Jogos Repetidos</h2>
+<ul>
+<li>Na vida real, empresas competem praticando jogos repetidos: açoes
+são realizadas repetidas vezese os payoffs recebidos em cada
+repetição.</li>
+<li>As repetições dos jogos permitem que as empresas desenvolvam uma
+reputação a respeito do seu próprio comportamento e que estudem o
+comportamento dos concorrentes.</li>
+</ul>
+</section>
+<section id="dois-postos-de-gasolina" class="slide level2">
+<h2>Dois Postos de Gasolina</h2>
+<ul>
+<li>Dois postos de gasolina vendem o mesmo produto e tem o mesmo custo
+marginal.</li>
+<li>É um mercado oligopolista em que as empresas definem o preço de
+venda (Bertrand).</li>
+<li>Estratégia “olho por olho, dente por dente”: jogador responde de
+forma igual às prévias do concorrente, cooperando com aqueles que
+cooperam e retaliando o que não cooperam.</li>
+</ul>
+<p><img data-src="figures/posto1.png" style="width:40.0%" alt="Posto" />
+<img data-src="figures/posto2.PNG" style="width:40.0%"
+alt="Posto" /></p>
+</section>
+<section id="equilíbrio-em-um-jogo-repetido-finitas-vezes"
+class="slide level2">
+<h2>Equilíbrio em um jogo repetido <strong>finitas</strong> vezes</h2>
+<ul>
+<li>Esse jogo repetido é uma versão de um Dilema do Prisioneiro.</li>
+<li>Chega-se ao mesmo equilíbrio.</li>
+</ul>
+<p><img data-src="figures/ex_3.PNG" style="width:70.0%"
+alt="Jogo" /></p>
+</section>
+<section id="equilíbrio-em-um-jogo-repetido-infinitas-vezes"
+class="slide level2">
+<h2>Equilíbrio em um jogo repetido <strong>infinitas</strong> vezes</h2>
+<ul>
+<li>Com jogos repetidos infinitas vezes, o comportamento cooperativo
+(cobrar o preço alto) torna-se a estratégia racional.</li>
+<li>O ganho esperado decorrente da cooperação ultrapassa o ganho advindo
+de uma guerra de preços.</li>
+</ul>
+<p><img data-src="figures/ex_3.PNG" style="width:70.0%"
+alt="Jogo" /></p>
+</section></section>
+<section>
+<section id="jogos-dinâmicos" class="title-slide slide level1">
+<h1>Jogos Dinâmicos</h1>
+
+</section>
+<section id="jogos-dinâmicos-1" class="slide level2">
+<h2>Jogos Dinâmicos</h2>
+<ul>
+<li>Nos jogos dinâmicos, os jogadores tomam suas decisões um após o
+outro.,</li>
+<li>Há um líder e um seguidor (Modelo de Stackelberg).</li>
+<li>Cada jogador sabe o que o outro escolheu antes de realizar sua
+escolha.</li>
+</ul>
+<p><img data-src="figures/ex_4.PNG" style="width:70.0%"
+alt="Jogo" /></p>
+</section>
+<section id="forma-extensiva-do-jogo" class="slide level2">
+<h2>Forma extensiva do jogo</h2>
+<ul>
+<li>A forma extensiva do jogo é representada por uma árvore de
+decisão,</li>
+<li>O jogo começa com dois ramos representando as possíveis estratégias
+para o primeiro jogador.</li>
+<li>Em seguida representamos as possíveis estratégias para o segundo
+jogador.</li>
+</ul>
+<p><img data-src="figures/ex_5.PNG" style="width:50.0%"
+alt="Jogo" /></p>
+</section>
+<section id="método-de-resolução" class="slide level2">
+<h2>Método de Resolução</h2>
+<ul>
+<li>Jogos sequenciais podem ser resolvidos diretamente pelo método da
+indução retroativa, ou seja, de trás pra frente.</li>
+<li>Quem joga antes deve levar em conta que a reação do oponente será
+baseada no maior payoff possível, após sua escolha.</li>
+</ul>
+<p><img data-src="figures/ex_6.PNG" style="width:50.0%"
+alt="Jogo" /></p>
+</section>
+<section id="um-jogo-com-barreira-à-entrada" class="slide level2">
+<h2>Um Jogo com Barreira à Entrada</h2>
+<ul>
+<li>Supunhamos um mercado com um monopolista que enfrenta a ameaça de
+entrada de outra empresa.</li>
+<li>Podemos representar essa situação pelo jogo anterior.</li>
+<li>O Jogador A seria o entrante e o Jogador B seria o monopolista.</li>
+</ul>
+<p><img data-src="figures/ex_7.PNG" style="width:50.0%"
+alt="Jogo" /></p>
+</section>
+<section id="um-jogo-com-barreira-à-entrada-1" class="slide level2">
+<h2>Um Jogo com Barreira à Entrada</h2>
+<ul>
+<li>Supunhamos que a empresa monopolista possa comprar uma capacidade de
+produção extra permitindo aumentar a produção ao mesmo custo
+marginal</li>
+</ul>
+<p><img data-src="figures/ex_8.PNG" style="width:50.0%"
+alt="Jogo" /></p>
+</section></section>
+<section>
+<section id="aplicações" class="title-slide slide level1">
+<h1>Aplicações</h1>
+
+</section>
+<section id="aplicações-1" class="slide level2">
+<h2>Aplicações</h2>
+<ol type="1">
+<li><strong>Economia:</strong>
+<ul>
+<li><strong>Comportamento de Oligopólio:</strong> A teoria dos jogos
+esclarece como as empresas interagem em mercados competitivos,
+influenciando decisões de preços e produção</li>
+<li><strong>Leilões:</strong> ajuda a analisar diferentes formatos de
+leilão e estratégias de lances otimizados, em especial first-price
+sealed-bid auction</li>
+<li><strong>Negociações Trabalhistas:</strong> Ela fornece insights
+sobre negociações salariais, barganha Coletiva, greves e dinâmicas do
+mercado de trabalho</li>
+<li><strong>Negociações sobre Mudanças Climáticas:</strong> Modelar
+acordos internacionais e estratégias de cooperação para enfrentar
+desafios globais como as mudanças climáticas.</li>
+</ul></li>
+<li><strong>Ciência Política:</strong>
+<ul>
+<li><strong>Comportamento de Votação:</strong> A teoria dos jogos modela
+estratégias de eleitores, posicionamento de candidatos e o impacto de
+mensagens de campanha.</li>
+<li><strong>Relações Internacionais:</strong> Ela explora a resolução de
+conflitos, negociações e a dinâmica de tratados internacionais.</li>
+</ul></li>
+<li><strong>Administração:</strong>
+<ul>
+<li><strong>Negociações Empresariais:</strong> Aplicação da teoria dos
+jogos para entender dinâmicas competitivas, estratégias de precificação
+e negociações em ambientes corporativos.</li>
+</ul></li>
+<li><strong>Outros:</strong>
+<ul>
+<li><strong>Esportes e Jogos Competitivos:</strong> Analisar
+considerações estratégicas em esportes, onde táticas e antecipação dos
+movimentos dos adversários desempenham um papel crítico.</li>
+</ul></li>
+</ol>
+<p><br> <br> <br></p>
+</section></section>
+<section id="obrigado" class="title-slide slide level1">
+<h1>OBRIGADO!</h1>
+
+</section>
+    </div>
+  </div>
+
+  <script src="Aula_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="Aula_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display a presentation progress bar
+        progress: true,
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+        // Enable the slide overview mode
+        overview: true,
+        // Vertical centering of slides
+        center: false,
+        // Enables touch navigation on devices with touch input
+        touch: true,
+        // Turns fragments on and off globally
+        fragments: true,
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+        // Transition speed
+        transitionSpeed: 'default', // default/fast/slow
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        menu: {
+   
+          numbers: true,
+    
+    
+    
+    
+    
+    
+ 
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        chalkboard: {
+        },
+
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },    // toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() }, // toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },    // clear chalkboard when 'DEL' is pressed
+           8: function() { RevealChalkboard.reset() },    // reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() }, // downlad recorded chalkboard drawing when 'd' is pressed
+        },
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'Aula_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: 'Aula_files/reveal.js-3.3.0.1/plugin/chalkboard/chalkboard.js', async: true },
+          { src: 'Aula_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
