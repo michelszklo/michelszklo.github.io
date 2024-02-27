@@ -13,7 +13,7 @@
 
 <title>Research</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
@@ -29,12 +29,12 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -134,11 +134,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -167,8 +171,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -176,16 +180,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -464,33 +461,38 @@ not sufficiently effective for relevant changes in equity.</font></p>
 </div>
 <div id="working-papers" class="section level3">
 <h3>Working Papers</h3>
-Health Spending and Health Outcomes: evidence from Brazil (with
+Does Increasing Public Spending in Health Improve Health? Lessons from a
+Constitutional Reform in Brazil (with
 <a href="http://www.rudirocha.org/" target="_blank">Rudi Rocha</a> and
 <a href="http://www.damianclarke.net/" target="_blank">Damian
 Clarke</a>)
+[<a href="https://michelszklo.com/wp/ec29.pdf" target="_blank"><strong>paper</strong></a>]
 <details>
 <summary>
 <font size = '2'></font>
 </summary>
-<p><font size = '2'>This paper assesses the causal effects of public
-health spending on health outcomes by leveraging the variation in health
-spending prompted by Brazil’s 29th Constitutional Amendment of 2000. We
-are also able to document the links in the chain connecting spending
-reform to health outcomes. We show that (a) a constitutional amendment
-mandating minimum health spending effectively changes spending patterns
-both for municipalities which were previously below spending floors as
-well as those that were above spending floors; (b) these increases in
-health spending translate into greater primary care coverage, higher
-supply of hospitals and less-skilled professionals,and; (c) that
-spending increases lead to moderate reductions in infant mortality
-within 24 hours and due to perinatal conditions, as well as long term
-reductions in total infant mortality and infant mortality amenable to
-primary care, among other causes. Our results contribute to the
-literature on the impacts of health spending by providing one of the
-first well-identified causal parameters of the relationship between
-public health spending and health outcomes.<br> <br>
-<strong>Won</strong> the Prize of Best Applied Microeconomics Article of
-the 44th Meeting of the Brazilian Econometric Society</font></p>
+<p><font size = '2'>We examine the link between public spending in
+health and health outcomes by leveraging differential exposure to a
+health spending reform prompted by Brazil’s 29th Constitutional
+Amendment, which mandated municipalities to spend at least 15% of their
+budget on health. We map dynamic effects on health care spending,
+inputs, access, outputs and outcomes. For municipalities initially
+spending below the 15% threshold, we find (a) large increases in health
+spending specifically, driven by administrative spending, infrastructure
+investment, and human resources; (b) a resulting greater supply of
+personnel, primary care coverage, and municipal hospitals; and (c)
+reductions in infant mortality rates, in particular for deaths during
+the neonatal period. While we find substantial cost increases and lower
+mortality elasticities compared with previous correlational parameters,
+benefits still exceed costs provided any VSL greater than US$764
+thousand. Our results contribute to the literature by providing one of
+the first well-identified causal parameters of the relationship between
+public spending in health and health outcomes, by documenting the links
+in the chain connecting government health expenditure to health
+outcomes, and by considering spillovers across space and sectors.<br>
+<br> <strong>Won</strong> the Prize of Best Applied Microeconomics
+Article of the 44th Meeting of the Brazilian Econometric
+Society</font></p>
 </details>
 <p><br />
 </p>
